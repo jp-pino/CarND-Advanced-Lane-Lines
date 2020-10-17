@@ -56,6 +56,14 @@ if __name__ == "__main__":
 
   image, color = threshold.process(image)
 
-  # Plot the result
+  fig = plt.figure(figsize=(10, 5))
+
+  fig.add_subplot(1, 2, 1)
+  plt.imshow(plt.imread('test_images/test4.jpg'))
+  plt.title("Original")
+
+  fig.add_subplot(1, 2, 2)
   plt.imshow(image, cmap = 'gray')
-  plt.show()
+  plt.title("Thresholded")
+
+  plt.show(block = True)

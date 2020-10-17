@@ -1,5 +1,7 @@
 import numpy as np
 import cv2
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # Camera perspective class
 # - Applies perspective warping to implement Bird's Eye view
@@ -43,10 +45,21 @@ class Perspective():
 
 
 if __name__ == "__main__":
+  from calibration import Calibration
+  from threshold import Threshold
+
+  cal = Calibration()
+  threshold = Threshold()
   pers = Perspective()
 
-  cv2.imshow('result', pers.warp(cv2.imread('test_images/test1.jpg')))
-  cv2.waitKey(20000)
+  fig = plt.figure(figsize=(10, 5))
 
-  # Close preview window
-  cv2.destroyAllWindows()
+  fig.add_subplot(1, 2, 1)
+  plt.imshow(threshold.process(cal.undistort(plt.imread('test_images/test6.jpg')))[0], cmap='gray')
+  plt.title("Distorted")
+
+  fig.add_subplot(1, 2, 2)
+  plt.imshow(pers.warp(threshold.process(cal.undistort(plt.imread('test_images/test6.jpg')))[0]), cmap='gray')
+  plt.title("Undistorted")
+
+  plt.show(block = True)

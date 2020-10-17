@@ -19,13 +19,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/undistort_output.png "Undistorted"
-[image2]: ./test_images/test1.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
-[video1]: ./project_video.mp4 "Video"
+[image1]: ./output_images/undistort_output.png "Undistorted"
+[image2]: ./output_images/undistort_test.png "Road Transformed"
+[image3]: ./output_images/threshold_test.png "Binary Example"
+[image4]: ./output_images/warp_test.png "Warp Example"
+[image5]: ./output_images/detector1.png "Fit Visual 1"
+[image5]: ./output_images/detector2.png "Fit Visual 2"
+[image6]: ./output_images/output.png "Output"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 
@@ -117,4 +117,4 @@ Here's a [link to my video result](./project_video_out.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The main issue I've identified in my pipeline is that the counter for lost frames (when the `Detector` can't find a lane) is the same for both lanes. This forces the pipeline to run `__sliding_windows()` on both lanes even when only one of them is the problem. The pipeline could be made more robust if the lanes were identified on a more separate manner. 
+The main issue I've identified in my pipeline is that the counter for lost frames (when the `Detector` can't find a lane) is the same for both lanes. This forces the pipeline to run `__sliding_windows()` on both lanes even when only one of them is the problem. The pipeline could be made more robust if the lanes were identified on a more independent manner. 

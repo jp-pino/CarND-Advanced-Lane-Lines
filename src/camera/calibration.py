@@ -54,8 +54,14 @@ class Calibration:
 if __name__ == "__main__":
   cal = Calibration()
 
-  cv2.imshow('result', cal.undistort(cv2.imread('camera_cal/calibration1.jpg')))
-  cv2.waitKey(20000)
+  fig = plt.figure(figsize=(10, 5))
 
-  # Close preview window
-  cv2.destroyAllWindows()
+  fig.add_subplot(1, 2, 1)
+  plt.imshow(plt.imread('test_images/test2.jpg'))
+  plt.title("Distorted")
+
+  fig.add_subplot(1, 2, 2)
+  plt.imshow(cal.undistort(plt.imread('test_images/test2.jpg')))
+  plt.title("Undistorted")
+
+  plt.show(block = True)

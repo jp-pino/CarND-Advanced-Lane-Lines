@@ -216,7 +216,7 @@ class Detector():
 
     # Plots the left and right polynomials on the lane lines
     if plot:
-      plt.plot(left_fitx, ploty, color='yellow')
+      plt.plot(left_fitx, ploty, color='yellow') 
       plt.plot(right_fitx, ploty, color='yellow')
 
     return out_img, self.left_fit, self.right_fit

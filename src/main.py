@@ -50,31 +50,31 @@ def pipeline(img):
   # Plot lane
   img = plotter.plot_warped(img, left_fit, right_fit)
 
-  # Restore original perspective
-  img = perspective.warp(img, inverse = True)
+  # # Restore original perspective
+  # img = perspective.warp(img, inverse = True)
 
-  ## Overlay
-  # Overlay lane data over original image
-  img = cv2.addWeighted(original, 1, img, 1, 0)
+  # ## Overlay
+  # # Overlay lane data over original image
+  # img = cv2.addWeighted(original, 1, img, 1, 0)
 
-  ## Annotations
-  # Get curvature
-  r_left = curvature.calculate(img.shape[0], left_fit)
-  r_right = curvature.calculate(img.shape[0], right_fit)
-  # Get lane position
-  pos_left = curvature.x_pos(img.shape[0], left_fit)
-  pos_right = curvature.x_pos(img.shape[0], right_fit)
-  # Print curvature
-  img = plotter.plot_unwarped(img, r_left, r_right, pos_left, pos_right)
+  # ## Annotations
+  # # Get curvature
+  # r_left = curvature.calculate(img.shape[0], left_fit)
+  # r_right = curvature.calculate(img.shape[0], right_fit)
+  # # Get lane position
+  # pos_left = curvature.x_pos(img.shape[0], left_fit)
+  # pos_right = curvature.x_pos(img.shape[0], right_fit)
+  # # Print curvature
+  # img = plotter.plot_unwarped(img, r_left, r_right, pos_left, pos_right)
   return img
 
 
-white_output = 'project_video_out.mp4'
+white_output = 'project_video_out_test.mp4'
 ## To speed up the testing process you may want to try your pipeline on a shorter subclip of the video
 ## To do so add .subclip(start_second,end_second) to the end of the line below
 ## Where start_second and end_second are integer values representing the start and end of the subclip
 ## You may also uncomment the following line for a subclip of the first 5 seconds
 # clip1 = VideoFileClip("test_videos/solidWhiteRight.mp4").subclip(0,5)
-clip1 = VideoFileClip("project_video.mp4")
+clip1 = VideoFileClip("project_video.mp4").subclip(20, 30)
 white_clip = clip1.fl_image(pipeline) #NOTE: this function expects color images!!
 white_clip.write_videofile(white_output, audio=False, threads = 1)
